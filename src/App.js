@@ -16,7 +16,7 @@ import GotOne from "./components/GotOne";
 import EditNoteForm from "./components/EditNoteForm";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import NotesByUserId from "./components/NotesByUserId";
+import NotesByUserId from './components/NotesByUserId';
 
 // CSS
 import "./App.css";
@@ -62,9 +62,8 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  exact path="/:id/notes"
+                  exact exact path="/users/:id/notes"
                   render={props => <NotesByUserId {...props} />}
-                />
                 />
               </React.Fragment>
             ) : (
