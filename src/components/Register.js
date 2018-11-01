@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 
 // css
 import "../CSS/Register.css";
+import "../CSS/Loader_01.css";
 
 class Register extends React.Component {
   state = {
     username: "",
     email: "",
     password: "",
-    error: null,
-    isRegistering: this.props.isRegistering
+    error: null
   };
 
   handleOnChange = e => {
@@ -23,18 +23,15 @@ class Register extends React.Component {
   };
 
   handleRegister = e => {
-    e.preventDefault();
-    this.setState({ isRegistering: this.props.isRegistering });
-    setTimeout(() => {
-      this.props.registerUser({
-        username: this.state.username.trim(),
-        email: this.state.email.trim(),
-        password: this.state.password.trim()
-      });
-    }, 300);
+    this.props.registerUser({
+      username: this.state.username.trim(),
+      email: this.state.email.trim(),
+      password: this.state.password.trim()
+    });
   };
 
   render() {
+    console.log(`is regsitering: ${this.props.isRegistering}`);
     return (
       <div className="register-form">
         <h1 className="register-header">Register</h1>
@@ -66,16 +63,28 @@ class Register extends React.Component {
             />
           </div>
           <div className="form-ctrl">
-            {this.state.isRegistering ? (
-              <div>Registering</div>
+            {this.props.isRegistering ? (
+              <div className="line-container">
+                <div className="line" />
+              </div>
             ) : (
-              <button onClick={this.handleRegister} type="submit">
-                Register User Account
+              <button
+                disabled={this.props.isRegistering}
+                onClick={this.handleRegister}
+                type="submit"
+                className="btn link"
+              >
+                Register
               </button>
             )}
           </div>
         </form>
-        <Link to="/login" className="my-3" href="" onClick={this.handleIsMember}>
+        <Link
+          to="/login"
+          className="my-3"
+          href=""
+          onClick={this.handleIsMember}
+        >
           Already a Member?
         </Link>
       </div>
@@ -85,10 +94,11 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.isLoggedIn,
+    user: state.user,
     token: state.token,
-    isRegistering: state.isRegistering,
-    user: state.user
+    isLoggedIn: state.isLoggedIn,
+    error: state.error,
+    isRegistering: state.isRegistering
   };
 };
 

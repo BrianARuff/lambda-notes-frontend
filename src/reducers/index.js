@@ -31,7 +31,7 @@ const initialState = {
   isLoggedIn: false,
   user: {},
   token: null,
-  isRegstering: false,
+  isRegistering: false,
   isLoggingIn: false
 };
 
@@ -80,20 +80,21 @@ export default (state = initialState, action) => {
         updated: false
       });
     case IS_REGISTERING:
-      // doing it the ES6 way for fun...
-      return {...state, isRegstering: true};
+      return Object.assign({}, state, {
+        isRegistering: true
+      })
     case REGISTER_SUCCESSFUL:
       return Object.assign({}, state, {
         isLoggedIn: true,
         message: action.payload.message,
         user: action.payload.user,
         token: action.payload.token,
-        isRegstering: false
+        isRegistering: false
       });
     case REGISTER_FAILURE:
       return Object.assign({}, state, {
         isLoggedIn: false,
-        isRegstering: false
+        isRegistering: false
       });
     case IS_LOGGING_IN:
       return Object.assign({}, state, {

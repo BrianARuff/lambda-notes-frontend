@@ -24,9 +24,6 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-      <div>
-        <h4>Welcome, {this.props.user.username}</h4>
-      </div>
         <div
           className="row m-3"
           style={
@@ -36,9 +33,16 @@ class App extends Component {
           }
         >
           <div className="col-md-3 p-5 border-left action-container left-side">
+            <div className="m-3">
+              <h4>
+                {localStorage.getItem("isLoggedIn") === "true"
+                  ? `Welcome, ${localStorage.getItem("username")}`
+                  : ""}
+              </h4>
+            </div>
             {localStorage.getItem("isLoggedIn") === "true" ? (
-              <Route path="/" render={(props) => <ActionPanel {...props} />} />
-             ) : null}
+              <Route path="/" render={props => <ActionPanel {...props} />} />
+            ) : null}
           </div>
           <div className={`col-md-9 p-5 border right-side`}>
             {localStorage.getItem("isLoggedIn") === "true" ? (
@@ -49,8 +53,11 @@ class App extends Component {
                 <Route
                   exact
                   path="/editForm/:title/:id"
-                  render={(props) => (
-                    <EditNoteForm updateNote={this.props.updateNote} {...props} />
+                  render={props => (
+                    <EditNoteForm
+                      updateNote={this.props.updateNote}
+                      {...props}
+                    />
                   )}
                 />
               </React.Fragment>

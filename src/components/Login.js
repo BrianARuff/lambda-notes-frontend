@@ -48,11 +48,18 @@ class Login extends React.Component {
             />
           </div>
           <div className="form-ctrl">
-            {this.state.isRegistering ? (
-              <div>Registering</div>
+          {this.props.isLoggingIn ? (
+              <div className="line-container">
+                <div className="line" />
+              </div>
             ) : (
-              <button disabled={this.props.isLoggingIn} onClick={this.handleLogin} type="submit">
-                {this.props.isLoggingIn ? "Logging In..." : "Login"}
+              <button
+                disabled={this.props.isLoggingIn}
+                onClick={this.handleLogin}
+                type="submit"
+                className="btn link"
+              >
+                Login
               </button>
             )}
           </div>
