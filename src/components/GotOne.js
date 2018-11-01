@@ -28,13 +28,13 @@ class GotOne extends React.Component {
   }
 
   render() {
-    const {textBody, title, _id, tags} = this.props.location.state.note;
+    const {textBody, title, id, tags} = this.props.location.state.note;
     return (
         <div className="note-card single-card col-md-12 pos-relative got-one-card">
         <div className="edit-delete">
           <p className="mx-3 font-weight-light">
             <Link style={{color: 'black', fontWeight: 'bold', fontSize: '0.7rem'}} to={{
-              pathname: `/editForm/${title}/${_id}`,
+              pathname: `/editForm/${title}/${id}`,
               state: this.props.location.state.note
             }}>Edit</Link>
           </p>
