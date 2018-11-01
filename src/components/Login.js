@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { loginUser } from "../actions/index";
 
 // CSS
-import "../CSS/Register.css";
+import "../CSS/Loader_01.css";
 
 class Login extends React.Component {
   state = {
