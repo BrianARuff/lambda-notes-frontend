@@ -62,7 +62,7 @@ class App extends Component {
                   )}
                 />
                 <Route
-                  path="/:id/notes"
+                  exact path="/:id/notes"
                   render={props => <NotesByUserId {...props} />}
                 />
                 />
