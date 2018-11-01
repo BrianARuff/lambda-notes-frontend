@@ -20,7 +20,8 @@ class NewNoteForm extends React.Component {
       this.props.createNote({
         tags: JSON.stringify(this.state.tags.split(", ")),
         title: this.state.title,
-        textBody: this.state.textBody
+        textBody: this.state.textBody,
+        user_id: parseInt(localStorage.getItem('user_id'), 10)
       });
       this.props.history.push("/");
     }
