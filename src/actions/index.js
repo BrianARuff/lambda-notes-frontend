@@ -43,14 +43,15 @@ export const getNotes = () => {
 };
 
 export const createNote = note => {
-  console.log(note);
+  console.log(`Passed Note: ${note}`);
   return dispatch => {
     dispatch({ type: CREATING_NOTE });
     axios
       .post("https://brian-lambda-notes.herokuapp.com/api/notes", note)
-      .then(resp =>
-        dispatch({ type: CREATING_NOTE_SUCESSFULL, payload: resp.data })
-      )
+      .then(resp => {
+        console.log(`Resp Note: ${resp.data.note}`);
+        dispatch({ type: CREATING_NOTE_SUCESSFULL, payload: resp.data });
+      })
       .then(() => getNotes()(dispatch))
       .catch(err =>
         dispatch({ type: CREATING_NOTE_FAILURE, payload: new Error(err) })
