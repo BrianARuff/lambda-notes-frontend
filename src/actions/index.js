@@ -43,6 +43,7 @@ export const getNotes = () => {
 };
 
 export const createNote = note => {
+  console.log(note);
   return dispatch => {
     dispatch({ type: CREATING_NOTE });
     axios
