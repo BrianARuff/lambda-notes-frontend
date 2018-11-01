@@ -16,6 +16,7 @@ import GotOne from "./components/GotOne";
 import EditNoteForm from "./components/EditNoteForm";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import NotesByUserId from "./components/NotesByUserId";
 
 // CSS
 import "./App.css";
@@ -59,6 +60,11 @@ class App extends Component {
                       {...props}
                     />
                   )}
+                />
+                <Route
+                  path="/:id/notes"
+                  render={props => <NotesByUserId {...props} />}
+                />
                 />
               </React.Fragment>
             ) : (

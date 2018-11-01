@@ -14,8 +14,12 @@ import {
   REGISTER_FAILURE,
   IS_LOGGING_IN,
   LOGIN_SUCCESSFUL,
-  LOGIN_FAILURE
+  LOGIN_FAILURE,
+  GETTING_NOTES_BY_USER_ID,
+  GOT_NOTES_BY_USER_SUCCESSFUL,
+  GOT_NOTES_BY_USER_FAILURE
 } from "../actions";
+import { Object } from "core-js";
 
 const initialState = {
   notes: [],
@@ -32,7 +36,9 @@ const initialState = {
   user: {},
   token: null,
   isRegistering: false,
-  isLoggingIn: false
+  isLoggingIn: false,
+  isGettingNotesById: false,
+  notesById: []
 };
 
 export default (state = initialState, action) => {
@@ -82,7 +88,7 @@ export default (state = initialState, action) => {
     case IS_REGISTERING:
       return Object.assign({}, state, {
         isRegistering: true
-      })
+      });
     case REGISTER_SUCCESSFUL:
       return Object.assign({}, state, {
         isLoggedIn: true,
@@ -99,7 +105,7 @@ export default (state = initialState, action) => {
     case IS_LOGGING_IN:
       return Object.assign({}, state, {
         isLoggingIn: true
-      })
+      });
     case LOGIN_SUCCESSFUL:
       return Object.assign({}, state, {
         isLoggedIn: true,
@@ -112,6 +118,20 @@ export default (state = initialState, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
         isLoggingIn: false
+      });
+    case GETTING_NOTES_BY_USER_ID:
+      return Object.assign({}, state, {
+        isGettingNotesById: true
+      });
+    case GOT_NOTES_BY_USER_SUCCESSFUL:
+      return Object.assign({}, state, {
+        isGettingNotesById: false,
+        notesById: action.payload
+      });
+    case GOT_NOTES_BY_USER_FAILURE:
+      return Object.assign({}, state, {
+        isGettingNotesById: false,
+        error: action.payload
       })
     default:
       return state;

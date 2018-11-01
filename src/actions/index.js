@@ -4,6 +4,9 @@ import Cookies from "js-cookie";
 export const FETCHING_NOTES = "FETCHING_NOTES";
 export const FETCHING_NOTES_SUCCESSFUL = "FETCHING_NOTES_SUCCESSFUL";
 export const FETCHING_NOTES_FAILURE = "FETCHING_NOTES_FAILURE";
+export const GETTING_NOTES_BY_USER_ID = "GETTING_NOTES_BY_USER_ID";
+export const GOT_NOTES_BY_USER_SUCCESSFUL = "GOT_NOTES_BY_USER_SUCCESSFUL";
+export const GOT_NOTES_BY_USER_FAILURE = "GOT_NOTES_BY_USER_FAILURE";
 export const CREATING_NOTE = "CREATING_NOTE";
 export const CREATING_NOTE_SUCESSFULL = "CREATING_NOTE_SUCESSFULL";
 export const CREATING_NOTE_FAILURE = "CREATING_NOTE_FAILURE";
@@ -39,6 +42,19 @@ export const getNotes = () => {
           );
       }, 500);
     });
+  };
+};
+
+export const getNotesByUserId = id => {
+  return dispatch => {
+    dispatch({ GETTING_NOTES_BY_USER_ID });
+    axios
+      .get(`https://brian-lambda-notes.herokuapp.com/api/users/${id}/notes`)
+      .then(resp => {
+        console.log(resp.data);
+        dispatch({ GOT_NOTES_BY_USER_SUCCESSFUL, payload: resp.data });
+      })
+      .catch(error => dispatch({ GOT_NOTES_BY_USER_FAILURE, payload: error }));
   };
 };
 
