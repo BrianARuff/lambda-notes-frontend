@@ -13,13 +13,6 @@ class NotesByUserId extends React.Component {
   render() {
     return (
       <div>
-        {this.props.notesById.map(note => {
-          <ul>
-            <li>{note.username}</li>
-            <li>{note.title}</li>
-            <li>{note.textBody}</li>
-          </ul>;
-        })}
       </div>
     );
   }
