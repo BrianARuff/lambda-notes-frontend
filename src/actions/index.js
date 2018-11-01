@@ -72,7 +72,10 @@ export const deleteNote = id => {
 export const updateNote = note => {
   return dispatch => {
     axios
-      .put(`https://brian-lambda-notes.herokuapp.com/api/notes/${note.id}`, note)
+      .put(
+        `https://brian-lambda-notes.herokuapp.com/api/notes/${note.id}`,
+        note
+      )
       .then(() => dispatch({ type: UPDATE_SUCCESSFUL }))
       .then(() => getNotes()(dispatch))
       .catch(err =>
@@ -88,7 +91,8 @@ export const registerUser = (user, history) => {
       .post("https://brian-lambda-notes.herokuapp.com/api/users/register", user)
       .then(resp => {
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem('username', resp.data.user.username);
+        localStorage.setItem("username", resp.data.user.username);
+        localStorage.setItem("user_id", resp.data.user.id);
         Cookies.set("token", resp.data.token);
         dispatch({ type: REGISTER_SUCCESSFUL, payload: resp.data });
         history.push("/");
@@ -107,7 +111,9 @@ export const loginUser = (user, history) => {
       .post("https://brian-lambda-notes.herokuapp.com/api/users/login", user)
       .then(resp => {
         localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem('username', resp.data.user.username);
+        localStorage.setItem("username", resp.data.user.username);
+        localStorage.setItem("user_id", resp.data.user.id);
+        console.log(`User: ${resp.data.user.id}`);
         Cookies.set("token", resp.data.token);
         dispatch({ type: LOGIN_SUCCESSFUL, payload: resp.data });
         history.push("/");
