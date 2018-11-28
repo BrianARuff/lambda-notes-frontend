@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Auxillary Packages
 import { connect } from 'react-redux';
@@ -14,6 +15,14 @@ class EditNoteForm extends React.Component {
     textBody: this.props.location.state.textBody,
     tags: this.props.location.state.tags
   }
+
+  static propTypes = {
+    deleteNote: PropTypes.func,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    note: PropTypes.object
+};
 
   handleSubmit = () => {
     this.props.updateNote({

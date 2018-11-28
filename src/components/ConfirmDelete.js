@@ -1,9 +1,14 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 //CSS
 import "../CSS/ConfirmDelete.css";
 
 class ConfirmDelete extends React.Component {
+  static propTypes = {
+    confirmIt: PropTypes.func,
+    handleDelete: PropTypes.func,
+  }
   render() {
     return (
       <div onClick={this.props.confirmIt} className="delete-modal">
