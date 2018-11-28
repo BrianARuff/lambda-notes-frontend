@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 // Auxillary Packages
 import { connect } from "react-redux";
@@ -18,6 +19,20 @@ class ListView extends React.Component {
   state = {
     term: ""
   };
+
+  static propTypes = {
+    error: PropTypes.any,
+    deleted: PropTypes.bool,
+    history: PropTypes.object,
+    isFetching: PropTypes.bool,
+    fetched: PropTypes.func,
+    getNotes: PropTypes.func,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    message: PropTypes.string,
+    notes: PropTypes.arrayOf(PropTypes.object),
+    updated: PropTypes.bool,
+  }
 
   componentDidMount() {
     this.props.getNotes();

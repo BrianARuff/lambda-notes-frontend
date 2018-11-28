@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 // Auxillary Packages
 import { connect } from "react-redux";
@@ -14,6 +15,13 @@ class NewNoteForm extends React.Component {
     textBody: "",
     tags: ""
   };
+
+  static propTypes = {
+    createNote: PropTypes.func,
+    history: PropTypes.object,
+    location: PropTypes.object,
+    match: PropTypes.object
+  }
 
   handleSubmit = () => {
     if (this.state.title.trim() && this.state.textBody.trim()) {

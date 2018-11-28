@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 // Auxillary Packages
 import { connect } from "react-redux";
@@ -15,6 +16,16 @@ class Login extends React.Component {
     password: "",
     error: null
   };
+
+  static propTypes = {
+    history: PropTypes.object,
+    isLoggedIn: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    token: PropTypes.any,
+    user: PropTypes.object
+  }
 
   handleOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });

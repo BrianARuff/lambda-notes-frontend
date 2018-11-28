@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 // purgatorial code
 import { connect } from "react-redux";
@@ -17,6 +18,20 @@ class Register extends React.Component {
     password: "",
     error: null
   };
+
+  static propTypes = {
+    error: PropTypes.any,
+    history: PropTypes.object,
+    isFetching: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    notes: PropTypes.arrayOf(PropTypes.object),
+    token: PropTypes.any,
+    updateNote: PropTypes.func,
+    updated: PropTypes.bool,
+    user: PropTypes.object
+  }
 
   handleOnChange = e => {
     this.setState({ [e.target.name]: e.target.value });
