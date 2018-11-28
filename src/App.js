@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 // Auxillary Packages
 import { connect } from "react-redux";
@@ -22,6 +23,19 @@ import NotesByUserId from './components/NotesByUserId';
 import "./App.css";
 
 class App extends Component {
+  static propTypes = {
+    error: PropTypes.any,
+    history: PropTypes.object,
+    isFetching: PropTypes.bool,
+    isLoggedIn: PropTypes.bool,
+    location: PropTypes.object,
+    match: PropTypes.object,
+    notes: PropTypes.arrayOf(PropTypes.object),
+    token: PropTypes.any,
+    updateNote: PropTypes.func,
+    updated: PropTypes.bool,
+    user: PropTypes.object
+  }
   render() {
     return (
       <div className="container">

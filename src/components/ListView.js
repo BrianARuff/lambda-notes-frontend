@@ -25,7 +25,7 @@ class ListView extends React.Component {
     deleted: PropTypes.bool,
     history: PropTypes.object,
     isFetching: PropTypes.bool,
-    fetched: PropTypes.func,
+    fetched: PropTypes.bool,
     getNotes: PropTypes.func,
     location: PropTypes.object,
     match: PropTypes.object,
